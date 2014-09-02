@@ -35,8 +35,6 @@ Installation
 
         rg_uservoice:
             key: XXXX
-            host: XXXX
-            forum: XXXX
 
 
 That's it for basic configuration.
@@ -55,7 +53,8 @@ In your controllers:
 
 Available UserVoice options:
 
-  - TODO
+  - primary_color: #123456 (default: #2c3233)
+  - link_color: #123456 (default: #007cbf)
 
 
 Overriding the template
