@@ -1,0 +1,22 @@
+{
+    "name": "rgsystemes/uservoice-bundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "description": "Integrate easily UserVoice into your Symfony2 projects",
+    "keywords": ["uservoice", "symfony"],
+    "homepage": "https://github.com/rgsystemes/uservoice-bundle",
+    "authors": [
+        {
+            "name": "COLE Edouard",
+            "email": "ed@rg-systemes.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "2.*"
+    },
+    "autoload": {
+        "psr-0": { "RG\\UserVoiceBundle": "" }
+    },
+    "target-dir": "RG/UserVoiceBundle"
+}
