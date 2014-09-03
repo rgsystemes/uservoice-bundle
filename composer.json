@@ -13,7 +13,8 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "symfony/framework-bundle": "2.*"
+        "symfony/framework-bundle": "2.*",
+        "uservoice/uservoice": ">=0.0.5"
     },
     "autoload": {
         "psr-0": { "RG\\UserVoiceBundle": "" }

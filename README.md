@@ -53,9 +53,12 @@ In your controllers:
 
 Available UserVoice options:
 
-  - primary_color: #123456 (default: #2c3233)
-  - link_color: #123456 (default: #007cbf)
+    - primary_color: #123456 (default: #2c3233)
+    - link_color: #123456 (default: #007cbf)
 
+TODO:
+
+    - Add support for SSO
 
 Overriding the template
 =======================
