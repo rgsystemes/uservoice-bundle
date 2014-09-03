@@ -35,13 +35,19 @@ class RGUserVoiceExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        if (isset($config["key"]))
-            $container->setParameter("rg_uservoice.key", $config["key"]);
+        if (isset($config["widget_key"]))
+            $container->setParameter("rg_user_voice.key", $config["widget_key"]);
 
         if (isset($config["primary_color"]))
-            $container->setParameter("rg_uservoice.primary_color", $config["primary_color"]);
+            $container->setParameter("rg_user_voice.primary_color", $config["primary_color"]);
 
         if (isset($config["link_color"]))
-            $container->setParameter("rg_uservoice.link_color", $config["link_color"]);
+            $container->setParameter("rg_user_voice.link_color", $config["link_color"]);
+
+        if (isset($config["sso_key"]))
+            $container->setParameter("rg_user_voice.sso_key", $config["sso_key"]);
+
+        if (isset($config["domain"]))
+            $container->setParameter("rg_user_voice.domain", $config["domain"]);
     }
 }

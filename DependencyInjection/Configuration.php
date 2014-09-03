@@ -15,13 +15,15 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root("rg_uservoice");
+        $rootNode = $treeBuilder->root("rg_user_voice");
 
         $rootNode->
             children()->
-                scalarNode("key")->end()->
+                scalarNode("widget_key")->end()->
                 scalarNode("primary_color")->end()->
                 scalarNode("link_color")->end()->
+                scalarNode("domain")->end()->
+                scalarNode("sso_key")->end()->
             end()
         ;
 

@@ -2,6 +2,8 @@
 
 namespace RG\UserVoiceBundle\Twig\Extension;
 
+use RG\UserVoiceBundle\UserVoiceHelper;
+
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -24,8 +26,9 @@ class UserVoiceExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            "rg_uservoice_key" => new \Twig_Function_Method($this, "getUserVoiceKey", array("is_safe" => array("html"))),
+            "rg_uservoice_widget_key" => new \Twig_Function_Method($this, "getUserVoiceWidgetKey", array("is_safe" => array("html"))),
             "rg_uservoice_option" => new \Twig_Function_Method($this, "getUserVoiceOption", array("is_safe" => array("html"))),
+            "rg_uservoice_sso" => new \Twig_Function_Method($this, "getUserVoiceSso", array("is_safe" => array("html"))),
         );
     }
 
@@ -34,27 +37,12 @@ class UserVoiceExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function getUserVoiceKey()
+    public function getUserVoiceWidgetKey()
     {
-        // If a branded key is defined
-        $brandedKey = $this->getUserVoiceOption('branded_key');
-        if (!is_null($brandedKey)) {
-            // If the defined branded key is an empty string, it means
-            // we don't wanna use the one given in the configuration file
-            if (strlen($brandedKey) == 0)
-                return null;
+        if (UserVoiceHelper::getOption($this->container, 'disabled', false))
+            return null;
 
-            // But if it's not an empty string, it means we want to overload the
-            // given one in the configuration file
-            return $brandedKey;
-        }
-
-        // If there's no support for branded uservoice key, we simply use the configuration file
-        if ($this->container->hasParameter('rg_uservoice.key'))
-            return $this->container->getParameter('rg_uservoice.key');
-
-        // There's no support for uservoice detected !
-        return null;
+        return UserVoiceHelper::getParameter($this->container, 'key');
     }
 
     /**
@@ -64,11 +52,17 @@ class UserVoiceExtension extends \Twig_Extension
      */
     public function getUserVoiceOption($key, $default = null)
     {
-        $userVoiceOptions = $this->container->get('rg_uservoice_options');
-        if (!isset($userVoiceOptions[$key]))
-            return $default;
+        return UserVoiceHelper::getOption($this->container, $key, $default);
+    }
 
-        return $userVoiceOptions[$key];
+    /**
+     * Decorate the given URL with an UserVoice SSO token
+     *
+     * @param string $url
+     */
+    public function getUserVoiceSso($userName)
+    {
+        return UserVoiceHelper::generateSso($this->container, $userName, $this->getUserVoiceOption('lang', 'en'));
     }
 
     /**
