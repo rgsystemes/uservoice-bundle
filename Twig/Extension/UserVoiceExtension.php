@@ -62,7 +62,7 @@ class UserVoiceExtension extends \Twig_Extension
      */
     public function getUserVoiceSso($userName)
     {
-        return UserVoiceHelper::generateSso($this->container, $userName, $this->getUserVoiceOption('lang', 'en'));
+        return UserVoiceHelper::generateSso($this->container, $userName);
     }
 
     /**

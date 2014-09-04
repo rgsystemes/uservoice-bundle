@@ -31,10 +31,14 @@ Installation
             );
         }
 
-  3. Configure the `rg_uservoice` service in your config.yml:
+  3. Configure the `rg_user_voice` service in your config.yml:
 
-        rg_uservoice:
-            key: XXXX
+        rg_user_voice:
+            domain: %uservoice_domain%
+            sso_key: %uservoice_sso_key%
+            widget_key: %uservoice_widget_key%
+            primary_color: %uservoice_primary_color%
+            link_color: %uservoice_link_color%
 
 
 That's it for basic configuration.
@@ -42,28 +46,27 @@ That's it for basic configuration.
 Usage
 =====
 
-In your template:
+In your template, you can include the widget:
 
-    {% include "UserVoiceBundle::uservoice.html.twig" %}
+    {% include "UserVoiceBundle::widget.html.twig" %}
 
 In your controllers:
 
     $userVoiceOptions = $this->container->get('rg_uservoice_options');
-    $userVoiceOptions["userId"] = $this->getUser()->getUsername();
+    $userVoiceOptions["disabled"] = !$this->getUser()->getAccount()->isUserVoiceEnabled();
 
 Available UserVoice options:
 
-    - primary_color: #123456 (default: #2c3233)
-    - link_color: #123456 (default: #007cbf)
+    - disabled: true (default: false)
 
-TODO:
+It is also possible to generate your SSO token from a Twig template:
 
-    - Add support for SSO
+    <a href="http://domain.uservoice.com/knowledgebase?sso={{ rg_uservoice_sso(app.user.name) }}">
 
 Overriding the template
 =======================
 
 You can override the template used by copying the
-`Resources/views/uservoice.html.twig` file out of the bundle and placing it
+`Resources/views/widget.html.twig` file out of the bundle and placing it
 into `app/Resources/RGUserVoiceBundle/views`, then customising
 as you see fit.
