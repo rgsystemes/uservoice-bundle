@@ -49,5 +49,8 @@ class RGUserVoiceExtension extends Extension
 
         if (isset($config["domain"]))
             $container->setParameter("rg_user_voice.domain", $config["domain"]);
+
+        if (isset($config["forum_id"]))
+            $container->setParameter("rg_user_voice.forum_id", $config["forum_id"]);
     }
 }

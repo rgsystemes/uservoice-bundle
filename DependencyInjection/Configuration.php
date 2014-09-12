@@ -24,6 +24,7 @@ class Configuration implements ConfigurationInterface
                 scalarNode("link_color")->end()->
                 scalarNode("domain")->end()->
                 scalarNode("sso_key")->end()->
+                scalarNode("forum_id")->end()->
             end()
         ;
 
