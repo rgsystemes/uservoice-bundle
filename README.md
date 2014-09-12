@@ -39,6 +39,7 @@ Installation
             widget_key: %uservoice_widget_key%
             primary_color: %uservoice_primary_color%
             link_color: %uservoice_link_color%
+            forum_id: %uservoice_forum_id%
 
 
 That's it for basic configuration.
