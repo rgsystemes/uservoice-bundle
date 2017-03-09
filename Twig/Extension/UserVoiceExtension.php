@@ -26,9 +26,9 @@ class UserVoiceExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            "rg_uservoice_widget_key" => new \Twig_SimpleFunction($this, "getUserVoiceWidgetKey", array("is_safe" => array("html"))),
-            "rg_uservoice_option" => new \Twig_SimpleFunction($this, "getUserVoiceOption", array("is_safe" => array("html"))),
-            "rg_uservoice_sso" => new \Twig_SimpleFunction($this, "getUserVoiceSso", array("is_safe" => array("html"))),
+            new \Twig_SimpleFunction('rg_uservoice_widget_key', array($this, 'getUserVoiceWidgetKey'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('rg_uservoice_option', array($this, 'getUserVoiceOption'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('rg_uservoice_sso', array($this, 'getUserVoiceSso'), array('is_safe' => array('html')))
         );
     }
 
